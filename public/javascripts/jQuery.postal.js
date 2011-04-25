@@ -8,7 +8,8 @@ $.fn.postalize = function(callback){
   var callback = callback || defaultCallback;
 
   button.click(function(){
-    $.getJSON('/'+field.val(), callback);
+    var zipcode = field.val().replace(/[^0-9]/g, '');
+    $.getJSON('/'+zipcode, callback);
   });
 
   function defaultCallback(data){
@@ -28,6 +29,7 @@ $.fn.postalize = function(callback){
       }
     });
   }
+  return this;
 };
 
 })(jQuery);
