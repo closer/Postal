@@ -1,0 +1,49 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:postals, :index)
+      %li=link_to pat(:new), url(:postals, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:postals)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:postal, :city_kana)
+          %th=mat(:postal, :city)
+          %th=mat(:postal, :prefecture)
+          %th=mat(:postal, :created_at)
+          %th=mat(:postal, :town_kana)
+          %th=mat(:postal, :code)
+          %th=mat(:postal, :zipcode)
+          %th=mat(:postal, :updated_at)
+          %th=mat(:postal, :zipcode_old)
+          %th=mat(:postal, :area)
+          %th=mat(:postal, :area_kana)
+          %th=mat(:postal, :town)
+          %th=mat(:postal, :prefecture_kana)
+          %th.last="&nbsp;"
+        -@postals.each do |postal|
+          %tr
+            %td.first=postal.city_kana
+            %td=postal.city
+            %td=postal.prefecture
+            %td=postal.created_at
+            %td=postal.town_kana
+            %td=postal.code
+            %td=postal.zipcode
+            %td=postal.updated_at
+            %td=postal.zipcode_old
+            %td=postal.area
+            %td=postal.area_kana
+            %td=postal.town
+            %td=postal.prefecture_kana
+            %td.last
+              =button_to pat(:edit), url(:postals, :edit, :id => postal.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:postals, :destroy, :id => postal.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

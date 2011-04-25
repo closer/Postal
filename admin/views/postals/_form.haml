@@ -1,0 +1,70 @@
+.group
+  =f.label :city_kana
+  =f.error_message_on :city_kana
+  =f.text_field :city_kana, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :city
+  =f.error_message_on :city
+  =f.text_field :city, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :prefecture
+  =f.error_message_on :prefecture
+  =f.text_field :prefecture, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :town_kana
+  =f.error_message_on :town_kana
+  =f.text_field :town_kana, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :code
+  =f.error_message_on :code
+  =f.text_field :code, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :zipcode
+  =f.error_message_on :zipcode
+  =f.text_field :zipcode, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :zipcode_old
+  =f.error_message_on :zipcode_old
+  =f.text_field :zipcode_old, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :area
+  =f.error_message_on :area
+  =f.text_field :area, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :area_kana
+  =f.error_message_on :area_kana
+  =f.text_field :area_kana, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :town
+  =f.error_message_on :town
+  =f.text_field :town, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :prefecture_kana
+  =f.error_message_on :prefecture_kana
+  =f.text_field :prefecture_kana, :class => :text_field
+  %span.description Ex: a simple text
+
+
+.group.navform.wat-cf
+  =f.submit pat(:save), :class => :button
+  =f.submit pat(:cancel), :onclick => "window.location='#{url(:postals, :index)}';return false", :class => :button

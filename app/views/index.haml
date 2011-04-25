@@ -1,0 +1,34 @@
+!!!
+%html{:lang => 'ja'}
+  %head
+    %meta{:charset => 'utf-8'}
+    %title Zipcode > Address
+    %style
+      :sass
+        #result
+          :font-size 10px
+    =javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'
+    =javascript_include_tag 'jQuery.postal'
+  %body
+    %input#yubin{:type => 'text', :value => '2420007'}
+    %p
+      %select.yubin-prefecture
+        %option 東京都
+        %option 神奈川県
+      %input.yubin-city{:type => 'text'}
+      %span.yubin-town
+    %p.yubin-address
+
+    %input#zipcode{:type => 'text', :value => '1690073'}
+    %button.zipcode-load ろーど
+    %p
+      %select.zipcode-prefecture
+        %option 東京都
+        %option 神奈川県
+      %input.zipcode-city{:type => 'text'}
+      %span.zipcode-town
+    %p.zipcode-address
+    :javascript
+      $('#yubin').postalize();
+      $('#zipcode').postalize();
+
