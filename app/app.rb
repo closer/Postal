@@ -40,7 +40,18 @@ class Postal2 < Padrino::Application
   end
 
   get :index, :with => :zipcode do
-    Postal.where(:zipcode => /^#{params[:zipcode]}/).limit(100).entries.to_json
+    json = Postal.where(:zipcode => /^#{params[:zipcode]}/).limit(100).entries.to_json
+    if params['callback']
+      params['callback'] + '(' + json + ');'
+    else
+      json
+    end
   end
 
+  get '/javascripts/jquery.postal.js' do
+    scheme =  request.env['rack.url_scheme']
+    host =  request.env['HTTP_HOST']
+    content_type 'text/javascript'
+    "//REPLACED\n\n"+File.read(Padrino.root + '/public/javascripts/jquery.postal.jst').gsub(/BASE_URL/, "#{scheme}://#{host}/");
+  end
 end

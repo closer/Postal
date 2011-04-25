@@ -19,7 +19,9 @@ task :import => [SRC_DIR, "#{SRC_DIR}/ken_all.csv"] do |t|
 
   FasterCSV.foreach(t.prerequisites[1]) do |row|
     postal = Postal.new
-    postal.attributes = Postal.parse(row)
+    data = Postal.parse(row)
+    data[:town] = '' if data[:town] == '以下に掲載がない場合'
+    postal.attributes = data
     postal.save
     puts "UPDATE: #{postal.zipcode} #{postal.prefecture} #{postal.city} #{postal.town}"
   end
