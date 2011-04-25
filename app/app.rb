@@ -1,4 +1,5 @@
 class Postal2 < Padrino::Application
+  register SassInitializer
   register Padrino::Mailer
   register Padrino::Helpers
 
