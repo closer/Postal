@@ -15,6 +15,8 @@ class Postal2 < Padrino::Application
   # layout  :my_layout          # Layout can be in views/layouts/foo.ext or views/foo.ext (default :application)
   #
 
+  set :haml, {:format => :html5}
+
   ##
   # You can configure for a specified environment like:
   #

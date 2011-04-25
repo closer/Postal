@@ -1,15 +1,19 @@
 (function($){
 
+var base_url = "http://localhost:3000/";
+
 $.fn.postalize = function(callback){
   var field = $(this);
   var id = field.attr('id');
   var button = $('.'+id+'-load');
-  if(button.length == 0) button = $('<button>Load</button>').insertAfter(field);
+  if(button.length == 0) button = $('<button>Load</button>').insertAfter(field.get(-1));
   var callback = callback || defaultCallback;
 
   button.click(function(){
-    var zipcode = field.val().replace(/[^0-9]/g, '');
-    $.getJSON('/'+zipcode, callback);
+    var zipcode = $.map(field, function(f){
+      return $(f).val();
+    }).join('').replace(/[^0-9]/g, '');
+    $.getJSON(base_url + zipcode, callback);
   });
 
   function defaultCallback(data){
@@ -27,6 +31,7 @@ $.fn.postalize = function(callback){
         default:
           elm.text(text);
       }
+      elm.focus();
     });
   }
   return this;
