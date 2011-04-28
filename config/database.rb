@@ -17,7 +17,7 @@ end
 
 database_name = case Padrino.env
   when :development then 'postal2_development'
-  when :production  then 'postal2_production'
+  when :production  then uri.path.gsub(/^\//, '')
   when :test        then 'postal2_test'
 end
 
