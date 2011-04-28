@@ -21,11 +21,9 @@ database_name = case Padrino.env
   when :test        then 'postal2_test'
 end
 
-con = case Padrino.env
-  when :development then Mongo::Connection.new(host, port).db(database_name)
-  when :production  then Mongo::Connection.new(host, port).db(database_name).authenticate(uri.user, uri.password)
-  when :test        then Mongo::Connection.new(host, port).db(database_name)
-end
+con = Mongo::Connection.new(host, port).db(database_name)
+
+con.authenticate(uri.user, uri.password) if Padrino.env == :production
 
 Mongoid.database = con
 
