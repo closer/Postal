@@ -18,7 +18,7 @@ $.fn.postalize = function(callback){
   });
 
   function onSuccess(data) {
-    callback();
+    callback(data);
   };
 
   function defaultCallback(data){
