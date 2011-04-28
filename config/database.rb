@@ -23,7 +23,7 @@ end
 
 con = case Padrino.env
   when :development then Mongo::Connection.new(host, port).db(database_name)
-  when :production  then Mongo::Connection.new(host, port).db(database_name).authentivate(uri.user, uri.password)
+  when :production  then Mongo::Connection.new(host, port).db(database_name).authenticate(uri.user, uri.password)
   when :test        then Mongo::Connection.new(host, port).db(database_name)
 end
 
