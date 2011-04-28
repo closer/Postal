@@ -1,12 +1,19 @@
+require "uri"
+
+uri = URI.parse(ENV['MONGOHQ_URL']) if ENV['MONGOHQ_URL']
 
 # Connection.new takes host, port
 host = case Padrino.env 
   when :development then 'localhost'
-  when :production  then ENV['MONGOHQ_URL']
+  when :production  then uri.host
   when :test        then 'localhost'
 end
 
-port = Mongo::Connection::DEFAULT_PORT
+port = case Padrino.env
+  when :development then Mongo::Connection::DEFAULT_PORT
+  when :production  then url.port
+  when :tset        then Mongo::Connection::DEFAULT_PORT
+end
 
 database_name = case Padrino.env
   when :development then 'postal2_development'
