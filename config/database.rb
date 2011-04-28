@@ -1,6 +1,11 @@
 
 # Connection.new takes host, port
-host = 'localhost'
+host = case Padrino.env 
+  when :development then 'localhost'
+  when :production  then ENV['MONGOHQ_URL']
+  when :test        then 'localhost'
+end
+
 port = Mongo::Connection::DEFAULT_PORT
 
 database_name = case Padrino.env
