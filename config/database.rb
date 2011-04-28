@@ -11,7 +11,7 @@ end
 
 port = case Padrino.env
   when :development then Mongo::Connection::DEFAULT_PORT
-  when :production  then url.port
+  when :production  then uri.port
   when :tset        then Mongo::Connection::DEFAULT_PORT
 end
 
