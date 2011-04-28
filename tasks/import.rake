@@ -36,12 +36,15 @@ task :drop do
 end
 
 rule ".csv" => ".zip" do |t|
+  require "kconv"
   puts "Unzip:"
   puts " #{t.source}"
   puts " #{t.name}"
 
   sh "unzip -p #{t.source} > #{t.name}"
-  sh "nkf -w --overwrite #{t.name}"
+  csv_unicode = File.read(t.name).toutf8
+  File.open(t.name, 'w').write csv_unicode
+  #sh "nkf -w --overwrite #{t.name}"
 end
 
 rule ".zip" do |file|
