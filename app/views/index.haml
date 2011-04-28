@@ -1,32 +1,11 @@
-!!!
-%html{:lang => 'ja'}
-  %head
-    %meta{:charset => 'utf-8'}
-    %title Zipcode > Address
-    =stylesheet_link_tag 'index'
-    =javascript_include_tag '/api.js'
-  %body
-    %input#yubin.yubin-1{:type => 'text', :value => '242'}
-    %input.yubin-2{:type => 'text', :value => '0007'}
-    %p
-      %select.yubin-prefecture
-        %option 東京都
-        %option 神奈川県
-      %input.yubin-city{:type => 'text'}
-      %span.yubin-town
-    %p.yubin-address
+%h1 郵便番号検索 API
 
-    %input#zipcode{:type => 'text', :value => '1690073'}
-    %button.zipcode-load ろーど
-    %p
-      %select.zipcode-prefecture
-        %option 東京都
-        %option 神奈川県
-      %input.zipcode-city{:type => 'text'}
-      %span.zipcode-town
-    %p.zipcode-address
-    :javascript
-      (function($){
-        $('.yubin-1, .yubin-2 ').postalize();
-        $('#zipcode').postalize();
-      })(jQuery);
+%dl
+  %dt /api.js
+  %dd javascript library
+
+  %dt /api/:zipcode
+  %dd json api
+
+%p
+  =link_to :demo, '/demo'

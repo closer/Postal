@@ -11,7 +11,7 @@ $.fn.postalize = function(callback){
     var zipcode = $.map(field, function(f){
       return $(f).val();
     }).join('').replace(/[^0-9]/g, '');
-    $.getJSON(postal_base_url + zipcode + '?callback=?', onSuccess);
+    $.getJSON(postal_base_url + 'api/' + zipcode + '?callback=?', onSuccess);
     return false;
   });
 
@@ -28,6 +28,13 @@ $.fn.postalize = function(callback){
         : data[this];
       switch(true) {
         case elm.is('select'):
+          var options = elm.find('option');
+          options.each(function(){
+            if($(this).text() == text || $(this).val() == text) {
+              $(this).attr('selected', true);
+            }
+          });
+          break;
         case elm.is('input'):
           elm.val(text);
           break;
@@ -39,5 +46,11 @@ $.fn.postalize = function(callback){
   }
   return this;
 };
+
+$(function(){
+  $('.postalize').each(function(){
+    $(this).postalize();
+  });
+});
 
 })(jQuery);

@@ -1,0 +1,23 @@
+%fieldset
+  %legend Double
+  %p
+    %input#yubin.yubin-1{:type => 'text', :value => '242'}
+    %input.yubin-2{:type => 'text', :value => '0007'}
+  %p
+    %select.yubin-prefecture
+      %option 東京都
+      %option 神奈川県
+    %input.yubin-address{:type => 'text'}
+  :javascript
+    jQuery('.yubin-1, .yubin-2').postalize();
+
+%fieldset
+  %legend Single
+  %p
+    %input#zipcode.postalize{:type => 'text', :value => '1690073'}
+    %button.zipcode-load ろーど
+  %p
+    %select.zipcode-prefecture
+      %option 東京都
+      %option 神奈川県
+    %input.zipcode-address{:type => 'text'}
