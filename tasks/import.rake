@@ -2,7 +2,7 @@ require "rake/clean"
 
 BASE_URL = 'http://www.post.japanpost.jp/zipcode/dl/kogaki/zip'
 
-SRC_DIR = './src'
+SRC_DIR = '/tmp'
 
 directory SRC_DIR
 
