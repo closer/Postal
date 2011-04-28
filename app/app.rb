@@ -48,10 +48,16 @@ class Postal2 < Padrino::Application
     end
   end
 
-  get '/javascripts/jquery.postal.js' do
+  get '/api.js' do
     scheme =  request.env['rack.url_scheme']
     host =  request.env['HTTP_HOST']
     content_type 'text/javascript'
-    "//REPLACED\n\n"+File.read(Padrino.root + '/public/javascripts/jquery.postal.jst').gsub(/BASE_URL/, "#{scheme}://#{host}/");
+    body = ""
+    unless params['nojquery']
+      body += File.read(Padrino.root + '/public/javascripts/jquery.js')
+      body += "\n\n" + "jQuery.noConflict();\n\n"
+    end
+    body += "var postal_base_url = \"BASE_URL\";\n\n".gsub(/BASE_URL/, "#{scheme}://#{host}/")
+    body += File.read(Padrino.root + '/public/javascripts/jquery.postal.js')
   end
 end

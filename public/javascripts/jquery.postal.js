@@ -1,7 +1,5 @@
 (function($){
 
-var base_url = "BASE_URL";
-
 $.fn.postalize = function(callback){
   var field = $(this);
   var id = field.attr('id');
@@ -13,7 +11,7 @@ $.fn.postalize = function(callback){
     var zipcode = $.map(field, function(f){
       return $(f).val();
     }).join('').replace(/[^0-9]/g, '');
-    $.getJSON(base_url + zipcode + '?callback=?', onSuccess);
+    $.getJSON(postal_base_url + zipcode + '?callback=?', onSuccess);
     return false;
   });
 
