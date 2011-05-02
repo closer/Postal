@@ -5,8 +5,9 @@
     %input.yubin-2{:type => 'text', :value => '0007'}
   %p
     %select.yubin-prefecture
-      %option 東京都
-      %option 神奈川県
+      - @prefectures.each do |v|
+        %option
+          =v
     %input.yubin-address{:type => 'text'}
   :javascript
     jQuery('.yubin-1, .yubin-2').postalize();
@@ -18,6 +19,7 @@
     %button.zipcode-load ろーど
   %p
     %select.zipcode-prefecture
-      %option 東京都
-      %option 神奈川県
+      - @prefectures.each_with_index do |v, i|
+        %option{:value => i}
+          =v
     %input.zipcode-address{:type => 'text'}

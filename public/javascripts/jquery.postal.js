@@ -30,7 +30,7 @@ $.fn.postalize = function(callback){
         case elm.is('select'):
           var options = elm.find('option');
           options.each(function(){
-            if($(this).text() == text || $(this).val() == text) {
+            if($.trim($(this).text()) == text || $(this).val() == text) {
               $(this).attr('selected', true);
             }
           });
