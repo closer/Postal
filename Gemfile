@@ -14,6 +14,8 @@ gem 'haml'
 gem 'mongoid', "2.0.0.beta.20"
 gem 'bson_ext', :require => "mongo"
 
+gem 'mustang'
+
 gem 'coffee-script'
 gem 'coffee-filter'
 
