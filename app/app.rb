@@ -65,9 +65,8 @@ class Postal2 < Padrino::Application
       end
     end
     body += "var postal_base_url = \"BASE_URL\";\n\n".gsub(/BASE_URL/, "#{scheme}://#{host}/")
-    #body += File.read(Padrino.root + '/public/javascripts/jquery.postal.js')
     postal = "(function($, window, document, undefined){\n\n"
-    postal += coffee :"jquery.postal"
+    postal += File.read(Padrino.root + '/public/javascripts/jquery.postal.js')
     postal += "})(jQuery, this, this.document);\n\n"
     body += postal
     return body
