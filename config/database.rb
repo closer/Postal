@@ -1,24 +1,22 @@
-require "uri"
-
-uri = URI.parse(ENV['MONGOHQ_URL']) if ENV['MONGOHQ_URL']
-
 # Connection.new takes host, port
-host = case Padrino.env 
-  when :development then 'localhost'
-  when :production  then uri.host
-  when :test        then 'localhost'
-end
 
-port = case Padrino.env
-  when :development then Mongo::Connection::DEFAULT_PORT
-  when :production  then uri.port
-  when :tset        then Mongo::Connection::DEFAULT_PORT
-end
-
-database_name = case Padrino.env
-  when :development then 'postal2_development'
-  when :production  then uri.path.gsub(/^\//, '')
-  when :test        then 'postal2_test'
+host, port, database_name = case Padrino.env 
+  when :development 
+    ['localhost',
+    Mongo::Connection::DEFAULT_PORT,
+    'postal2_development']
+  when :production
+    require "uri"
+    if ENV['MONGOHQ_URL']
+      uri = URI.parse(ENV['MONGOHQ_URL'])
+      [uri.host,
+      uri.port,
+      uri.path.gsub(/^\//, '')]
+    end
+  when :test
+    ['localhost',
+    Mongo::Connection::DEFAULT_PORT,
+    'postal2_test']
 end
 
 con = Mongo::Connection.new(host, port).db(database_name)
