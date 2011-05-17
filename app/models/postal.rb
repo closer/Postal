@@ -26,6 +26,8 @@ class Postal
   field :town_kana
   field :area_kana
 
+  index :zipcode, :background => true
+
   class << self
     def parse row
       {
