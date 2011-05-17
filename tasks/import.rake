@@ -31,7 +31,7 @@ end
 desc 'drop database'
 task :drop do
   Mongoid.master.collections.
-    reject{|c| c.name ~= /^system.(indexes|ns)$/ }.each &:drop
+    reject{|c| c.name =~ /^system.(indexes|ns)$/ }.each &:drop
   puts "Database dropped."
 end
 
