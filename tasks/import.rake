@@ -29,9 +29,7 @@ end
 
 
 desc 'drop database'
-task :drop do
-  Mongoid.master.collections.
-    reject{|c| c.name =~ /^system.(indexes|ns)$/ }.each &:drop
+task :drop => "mi:drop" do
   puts "Database dropped."
 end
 
