@@ -8,7 +8,7 @@ host, port, database_name = case Padrino.env
   when :production
     ['mongo.postalcodejp.dotcloud.com',
     6192,
-    'postaljp'
+    'postalcodejp'
     ]
   when :test
     ['localhost',
