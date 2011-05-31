@@ -6,13 +6,10 @@ host, port, database_name = case Padrino.env
     Mongo::Connection::DEFAULT_PORT,
     'postal2_development']
   when :production
-    require "uri"
-    if ENV['MONGOHQ_URL']
-      uri = URI.parse(ENV['MONGOHQ_URL'])
-      [uri.host,
-      uri.port,
-      uri.path.gsub(/^\//, '')]
-    end
+    ['mongo.postalcodejp.dotcloud.com',
+    6192,
+    'postaljp'
+    ]
   when :test
     ['localhost',
     Mongo::Connection::DEFAULT_PORT,
@@ -21,7 +18,7 @@ end
 
 con = Mongo::Connection.new(host, port).db(database_name)
 
-con.authenticate(uri.user, uri.password) if Padrino.env == :production
+con.authenticate('root', 'Wa]]D5b0,oj}vpm>yDbl') if Padrino.env == :production
 
 Mongoid.database = con
 
