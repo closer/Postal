@@ -36,7 +36,7 @@ class Postal2 < Padrino::Application
   #
 
   get :index do
-    @url_scheme = request.env['url_scheme']
+    @url_scheme = request.env['rack.url_scheme']
     haml :index
   end
 
