@@ -7,18 +7,45 @@
 
 %p id, classの指定のみで自動的に動作します。
 
-%pre
-  %code
-
-    :plain
-      - input#[id].postalize
-      - input#[id].[id]1.postalize.separated
-      - input#[id].[id]2
+:markdown
   
-      - (select|input).[id]-prefecture
-      - input.[id]-city
-      - input.[id]-town
-      - input.[id]-address # city + town
+  [id]は任意の文字列です。
+
+  ### 郵便番号フィールド [XXX-XXXX]
+
+          input#[id].postalize
+
+  #### 郵便番号が２つのフィールドの場合 [XXX]-[XXXX]
+
+  classにseparatedがある場合、フィールドが分割されていると判断します。
+
+          input#[id].[id]1.postalize.separated
+          input#[id].[id]2
+
+  ### 読み込みボタン
+
+  下記のようなクラス名が付く要素を自動的に読み込みボタンにします。
+  見つからない場合はbutton要素を追加します。
+
+          *.[id]-load
+
+  ### 補完フィールド
+
+  #### 県名
+
+          (select|input).[id]-prefecture
+
+  #### 市町村
+
+          input.[id]-city
+
+  #### それ以下
+
+          input.[id]-town
+
+  #### 市町村+それ以下
+
+          input.[id]-address
 
 %dl
   %dt /api.js
