@@ -3,6 +3,9 @@
 $.fn.postalize = function(callback){
   var field = $(this);
   var id = field.attr('id');
+  if(field.hasClass('separated')) {
+    field = $('.'+id+'1, .'+id+'2');
+  }
   var button = $('.'+id+'-load');
   if(button.length == 0) button = $('<button>Load</button>').insertAfter(field.get(-1));
   var callback = callback || defaultCallback;
