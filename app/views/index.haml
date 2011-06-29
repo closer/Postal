@@ -7,16 +7,15 @@
 
 %p id, classの指定のみで自動的に動作します。
 
-:markdown
-  
+:plain
   - input#[id].postalize
   - input#[id].[id]1.postalize.separated
   - input#[id].[id]2
   
-  - .[id]-prefecture
-  - .[id]-city
-  - .[id]-town
-  - .[id]-address # city + town
+  - (select|input).[id]-prefecture
+  - input.[id]-city
+  - input.[id]-town
+  - input.[id]-address # city + town
 
 %dl
   %dt /api.js
