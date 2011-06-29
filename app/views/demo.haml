@@ -1,7 +1,7 @@
 %fieldset
   %legend Double
   %p
-    %input#yubin.yubin-1{:type => 'text', :value => ''}
+    %input#yubin.yubin-1.postalize.separated{:type => 'text', :value => ''}
     %input.yubin-2{:type => 'text', :value => ''}
   %p
     %select.yubin-prefecture
@@ -9,8 +9,6 @@
         %option
           =v
     %input.yubin-address{:type => 'text'}
-  :javascript
-    jQuery('.yubin-1, .yubin-2').postalize();
 
 %fieldset
   %legend Single
