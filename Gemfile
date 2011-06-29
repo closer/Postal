@@ -24,4 +24,4 @@ gem 'bson_ext', :require => "mongo"
 # Padrino
 gem 'padrino', "0.9.23"
 
-
+gem 'maruku'
