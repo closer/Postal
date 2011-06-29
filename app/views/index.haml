@@ -13,52 +13,61 @@
 
   ### 郵便番号フィールド [XXX-XXXX]
 
-          input#[id].postalize
+          <input type="text" id="[id]" class="postalize">
 
   #### 郵便番号が２つのフィールドの場合 [XXX]-[XXXX]
 
   classにseparatedがある場合、フィールドが分割されていると判断します。
 
-          input#[id].[id]1.postalize.separated
-          input#[id].[id]2
+          <input type="text" id="[id]" class="[id]1 postalize separated">
+          <input type="text" class="[id]2">
 
   ### 読み込みボタン
 
   下記のようなクラス名が付く要素を自動的に読み込みボタンにします。
   見つからない場合はbutton要素を追加します。
 
-          *.[id]-load
+          <button class="[id]-load"></button>
 
   ### 補完フィールド
 
   #### 県名
 
-          (select|input).[id]-prefecture
+          <select class="[id]-prefecture"></select>
+          <input type="text" class="[id]-prefecture">
 
   #### 市町村
 
-          input.[id]-city
+          <input type="text" class="[id]-city">
 
   #### それ以下
 
-          input.[id]-town
+          <input type="text" class="[id]-town">
 
   #### 市町村+それ以下
 
-          input.[id]-address
+          <input type="text" class="[id]-address">
+
+  ### javascript
+
+  bodyの閉じタグの直前に
+
+          <script type="text/javascript" src="https://postalcodejp.ssl.dotcloud.com/api.js"></script>
+
+  オプションは下記参照。
 
 %dl
   %dt /api.js
   %dd javascript library
   
   %dt /api.jQuery.js
-  %dd include jQuery
+  %dd include jQuery サイトでjQueryを使用していない場合、同時に読み込む
 
   %dt /api.jQuery.noConflict.js
-  %dd jQuery noConflict
+  %dd jQuery noConflict $関数を上書きされたくない場合、このようにする
 
-  %dt /api/:zipcode
-  %dd json api
+  %dt /api/:postalcode
+  %dd json api 直接APIを叩く場合。
 
 %p
   =link_to :demo, '/demo'
