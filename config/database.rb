@@ -19,7 +19,8 @@ end
 
 con = Mongo::Connection.new(host, port).db(database_name)
 
-con.authenticate(ENV['MONGO_USER'], ENV['MONGO_PASSWORD']) if Padrino.env == :production
+#con.authenticate(ENV['MONGO_USER'], ENV['MONGO_PASSWORD']) if Padrino.env == :production
+con.authenticate('worker', '000099') if Padrino.env == :production
 
 Mongoid.database = con
 
