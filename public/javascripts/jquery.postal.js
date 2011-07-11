@@ -23,7 +23,7 @@ $.fn.postalize = function(callback){
   };
 
   function defaultCallback(data){
-    var data = data[0];
+    var data = !data ? {prefecture:'',city:'',town:'',address:''} :data[0];
     $.each(['prefecture', 'city', 'town', 'address'], function(){
       var elm = $('.'+id+'-'+this);
       var text = this == 'address'
