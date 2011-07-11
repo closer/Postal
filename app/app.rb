@@ -49,8 +49,12 @@ class Postal2 < Padrino::Application
   end
 
   get '/api', :with => :zipcode do
-    return "[]" if params[:zipcode] == ""
-    entries = Postal.where(:zipcode => /^#{params[:zipcode]}/).limit(100).entries
+    entries = 
+      if params[:zipcode] == ""
+        []
+      else
+        Postal.where(:zipcode => /^#{params[:zipcode]}/).limit(100).entries
+      end
     json = entries.to_json
     if params['callback']
       params['callback'] + '(' + json + ');'
