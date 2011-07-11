@@ -51,11 +51,12 @@ class Postal2 < Padrino::Application
   get '/api', :with => :zipcode do
     entries = 
       if params[:zipcode] == ""
-        []
+        nil
       else
         Postal.where(:zipcode => /^#{params[:zipcode]}/).limit(100).entries
       end
     json = entries.to_json
+    content_type 'text/javascript'
     if params['callback']
       params['callback'] + '(' + json + ');'
     else
