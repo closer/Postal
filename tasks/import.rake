@@ -20,9 +20,10 @@ task :import => ["#{SRC_DIR}/ken_all.csv", "#{SRC_DIR}/jigyosyo.csv"] do |t|
   require "kconv"
 
   t.prerequisites.each do |csv|
+    type = (csv =~ /ken_all\.csv$/) ? 'kogaki' : 'jigyosyo'
     FasterCSV.foreach(csv) do |row|
       postal = Postal.new
-      data = Postal.parse(row)
+      data = Postal.send "parse_#{type}", row
       data[:town] = '' if data[:town] == '以下に掲載がない場合'
       postal.attributes = data
       postal.save
