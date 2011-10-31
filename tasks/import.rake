@@ -1,6 +1,8 @@
 require "rake/clean"
 
-BASE_URL = 'http://www.post.japanpost.jp/zipcode/dl/kogaki/zip'
+BASE_URL = 'http://www.post.japanpost.jp/zipcode/dl/'
+'kogaki/zip'
+'jigyosyo/zip/'
 
 SRC_DIR = '/tmp'
 
@@ -13,17 +15,19 @@ CLEAN.include(ZIPS)
 CLEAN.include(CSVS)
 
 desc 'import postal codes from csv.'
-task :import => [SRC_DIR, "#{SRC_DIR}/ken_all.csv"] do |t|
+task :import => ["#{SRC_DIR}/ken_all.csv", "#{SRC_DIR}/jigyosyo.csv"] do |t|
   require "fastercsv"
   require "kconv"
 
-  FasterCSV.foreach(t.prerequisites[1]) do |row|
-    postal = Postal.new
-    data = Postal.parse(row)
-    data[:town] = '' if data[:town] == '以下に掲載がない場合'
-    postal.attributes = data
-    postal.save
-    puts "UPDATE: #{postal.zipcode} #{postal.prefecture} #{postal.city} #{postal.town}"
+  t.prerequisites.each do |csv|
+    FasterCSV.foreach(csv) do |row|
+      postal = Postal.new
+      data = Postal.parse(row)
+      data[:town] = '' if data[:town] == '以下に掲載がない場合'
+      postal.attributes = data
+      postal.save
+      puts "UPDATE: #{postal.zipcode} #{postal.prefecture} #{postal.city} #{postal.town}"
+    end
   end
 end
 
@@ -48,7 +52,9 @@ end
 rule ".zip" do |file|
   path = file.to_s.split(/\//).last
 
-  url = "#{BASE_URL}/#{path}"
+  type = path =~ /^ken_all/ ? 'kogaki' : 'jigyosyo'
+
+  url = "#{BASE_URL}/#{type}/zip/#{path}"
   puts "Download:"
   puts " #{url}"
   puts " #{file}"
