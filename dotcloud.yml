@@ -1,0 +1,4 @@
+ruby18:
+  type: ruby
+mongo:
+  type: mongodb
