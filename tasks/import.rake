@@ -1,3 +1,4 @@
+#encoding: utf-8
 require "rake/clean"
 
 BASE_URL = 'http://www.post.japanpost.jp/zipcode/dl/'

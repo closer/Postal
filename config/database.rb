@@ -1,14 +1,14 @@
 # Connection.new takes host, port
 
-host, port, database_name = case Padrino.env 
-  when :development 
+host, port, database_name = case Padrino.env
+  when :development
     ['localhost',
     Mongo::Connection::DEFAULT_PORT,
     'postal2_development']
   when :production
     [
-      'mongo.postalcodejp.dotcloud.com',
-      6192,
+      'postalcodejp:000099@staff.mongohq.com',
+      10061,
       'postalcodejp'
     ]
   when :test

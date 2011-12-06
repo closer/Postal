@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Postal2 < Padrino::Application
   register SassInitializer
   register Padrino::Mailer
@@ -49,7 +51,7 @@ class Postal2 < Padrino::Application
   end
 
   get '/api', :with => :zipcode do
-    entries = 
+    entries =
       if params[:zipcode] == ""
         nil
       else
